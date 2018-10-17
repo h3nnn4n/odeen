@@ -45,16 +45,16 @@ class DE:
     def get_cr(self):
         return self.config.cr
 
-    def optimize_start(self, *args, **kargs):
+    def optimize_start(self):
         pass
 
-    def generation_start(self, *args, **kargs):
+    def generation_start(self):
         pass
 
-    def generation_end(self, *args, **kargs):
+    def generation_end(self):
         pass
 
-    def optimize_end(self, *args, **kargs):
+    def optimize_end(self):
         pass
 
     def set_before_eval_callback(self, callback):

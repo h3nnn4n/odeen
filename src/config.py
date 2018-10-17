@@ -3,7 +3,6 @@ class Config:
         self.de = None
         self.population = None
         self.problem = None
-        self.operators = []
         self.size = 0
         self.dimensions = 0
         self.f = 0.5

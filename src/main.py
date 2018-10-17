@@ -5,9 +5,8 @@ from config import Config
 
 def test(self):
     print('%6.2f %6.2f' % (
-            self.score,
-            self.config.population.best_score
-        )
+        self.score,
+        self.config.population.best_score)
     )
 
 
@@ -16,9 +15,11 @@ if __name__ == "__main__":
     config = Config()
     config.size = 100
     config.dimensions = 5
-    config.operators = ['rand1bin']
     config.set_function_evaluations_budget(10000)
-    problem_data = ProblemData(pname='Rosenbrock', n_dimensions=config.dimensions)
+    problem_data = ProblemData(
+        pname='Rosenbrock',
+        n_dimensions=config.dimensions
+    )
     config.problem = problem_data
 
     de = DE(config=config)
