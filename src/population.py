@@ -21,8 +21,10 @@ class Population:
 
         for individual in self.population:
             self.before_individual_eval()
-            individual.update()
+            individual.step()
             self.after_individual_eval()
+
+        self.selection()
 
         self.population_generation_end()
 
@@ -32,17 +34,17 @@ class Population:
             self.best_index = individual.index
 
     def get_best(self):
-        return (
-            self.population[self.best_index],
-            self.best_index
-        )
+        return self.population[self.best_index]
 
     def get_random(self):
-        position = random.randint(0, len(self.population))
-        return (
-            self.population[position],
-            position
-        )
+        position = random.randint(0, len(self.population) - 1)
+        return self.population[position]
+
+    def selection(self):
+        for individual in self.population:
+            if individual.swap_score < individual.score:
+                individual.swap()
+                self.update_best(individual)
 
     def population_generation_start(self, *args, **kargs):
         pass

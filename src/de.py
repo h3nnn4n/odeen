@@ -1,4 +1,5 @@
 from population import Population
+from operators import Operators
 import types
 
 
@@ -13,6 +14,8 @@ class DE:
         self.population = Population(
             config=config
         )
+
+        self.operators = Operators(config=config)
 
         self.config.population = self.population
 
@@ -35,6 +38,12 @@ class DE:
         self.generation_start()
 
         return True
+
+    def get_f(self):
+        return self.config.f
+
+    def get_cr(self):
+        return self.config.cr
 
     def optimize_start(self, *args, **kargs):
         pass

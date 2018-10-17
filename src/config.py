@@ -3,8 +3,11 @@ class Config:
         self.de = None
         self.population = None
         self.problem = None
+        self.operators = []
         self.size = 0
         self.dimensions = 0
+        self.f = 0.5
+        self.cr = 0.9
         self.function_evaluations_budget = 0
         self.evaluations_budget_left = self.function_evaluations_budget
 
