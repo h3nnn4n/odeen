@@ -1,4 +1,5 @@
 import random
+import types
 
 from individual import Individual
 
@@ -15,9 +16,15 @@ class Population:
         self.best_score = float('inf')
         self.best_index = None
 
-    def update(self):
+    def step(self):
+        self.population_generation_start()
+
         for individual in self.population:
+            self.before_individual_eval()
             individual.update()
+            self.after_individual_eval()
+
+        self.population_generation_end()
 
     def update_best(self, individual):
         if individual.score < self.best_score:
@@ -36,3 +43,31 @@ class Population:
             self.population[position],
             position
         )
+
+    def population_generation_start(self, *args, **kargs):
+        pass
+
+    def before_individual_eval(self, *args, **kargs):
+        pass
+
+    def after_individual_eval(self, *args, **kargs):
+        pass
+
+    def population_generation_end(self, *args, **kargs):
+        pass
+
+    def set_before_eval_callback(self, callback):
+        for individual in self.population:
+            individual.before_eval = types.MethodType(callback, individual)
+
+    def set_after_eval_callback(self, callback):
+        for individual in self.population:
+            individual.after_eval = types.MethodType(callback, individual)
+
+    def set_before_update_callback(self, callback):
+        for individual in self.population:
+            individual.before = types.MethodType(callback, individual)
+
+    def set_after_update_callback(self, callback):
+        for individual in self.population:
+            individual.after_update = types.MethodType(callback, individual)

@@ -28,11 +28,26 @@ class Individual:
         return self.score
 
     def update(self):
-        self.random_init_variables()
+        self.before_update()
+
+        self.before_eval()
+
         self.eval()
+
+        self.after_eval()
+
         self.config.population.update_best(self)
-        print('%6.2f %6.2f' % (
-                self.score,
-                self.config.population.best_score
-            )
-        )
+
+        self.after_update()
+
+    def before_update(self, *args, **kargs):
+        pass
+
+    def before_eval(self, *args, **kargs):
+        pass
+
+    def after_eval(self, *args, **kargs):
+        pass
+
+    def after_update(self, *args, **kargs):
+        pass
