@@ -1,3 +1,4 @@
+# pylint: disable=E1102,E0202
 from population import Population
 from operators import Operators
 import types
