@@ -1,7 +1,16 @@
 from de import DE
 from problem_data import ProblemData
+from config import Config
 
 
 if __name__ == "__main__":
-    problem_data = ProblemData(pname='Rosenbrock', n_dimensions=20)
-    de = DE(size=100, dimensions=100, obj_function=problem_data)
+
+    config = Config()
+    config.size = 100
+    config.dimensions = 20
+    config.set_function_evaluations_budget(5000)
+    problem_data = ProblemData(pname='Rosenbrock', n_dimensions=config.dimensions)
+    config.problem = problem_data
+
+    de = DE(config=config)
+    de.run()

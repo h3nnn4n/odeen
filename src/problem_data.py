@@ -212,3 +212,6 @@ class ProblemData:
 
     def eval(self, vector):
         return self.f_pointer(vector)
+
+    def initial_vector(self):
+        return self.f_pointer.initial_vector()
